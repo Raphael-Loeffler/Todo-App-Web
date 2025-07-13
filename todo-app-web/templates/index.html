@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Todo-List</h2>
+    <main>
+        <form action="{{url_for('index')}}">
+            <h2>Create new task</h2>
+            <div>
+                <label for="task_name">Name</label>
+                <input type="text" id="task_name" name="task_name" placeholder="Name">
+            </div>
+            <div>
+                <label for="task_priority">Priority</label>
+                <input type="text" id="task_priority" name="task_priority">
+            </div>
+            <button>Create</button>
+        </form>
+
+        <section id="todo_list">
+            <h2>Todo List:</h2>
+            {% for task_name, task_properties in task_data['tasks'].items() %}
+                <p>{{task_name}}</p>
+                <p>{{task_properties['priority']}}</p>
+                <p>------------------------</p>
+            {% endfor %}
+        </section>
+    </main>
+    
+
 {% endblock content %}
